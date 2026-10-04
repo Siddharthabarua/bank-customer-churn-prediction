@@ -1,0 +1,28 @@
+{
+  "customers": 10000,
+  "churn_rate": 0.2037,
+  "retained_rate": 0.7963,
+  "average_age": 38.9218,
+  "average_balance": 76485.889288,
+  "active_member_rate": 0.5151,
+  "average_products": 1.5302,
+  "geography_churn": {
+    "France": 0.1615,
+    "Germany": 0.3244,
+    "Spain": 0.1667
+  },
+  "gender_churn": {
+    "Female": 0.2507,
+    "Male": 0.1646
+  },
+  "product_churn": {
+    "1": 0.2771,
+    "2": 0.0758,
+    "3": 0.8271,
+    "4": 1.0
+  },
+  "active_churn": {
+    "0": 0.2685,
+    "1": 0.1427
+  }
+}

@@ -1,0 +1,16 @@
+feature,importance,display_feature
+num__Age,0.3812245602237181,Age
+num__NumOfProducts,0.272454154658752,NumOfProducts
+num__IsActiveMember,0.07350137552089896,IsActiveMember
+num__Balance,0.06818506614330962,Balance
+num__EngagementProduct,0.0585795373320823,EngagementProduct
+cat__Geography_Germany,0.04975481050742671,Geography: Germany
+num__BalanceSalaryRatio,0.026672475236112613,BalanceSalaryRatio
+num__CreditScore,0.019665849620395918,CreditScore
+num__EstimatedSalary,0.018560042855456524,EstimatedSalary
+num__AgeTenure,0.009019689585095329,AgeTenure
+cat__Gender_Male,0.006570086285646331,Gender: Male
+cat__Gender_Female,0.006092946065558957,Gender: Female
+num__ProductDensity,0.004536635334764767,ProductDensity
+cat__Geography_France,0.002019954806841746,Geography: France
+num__HasCrCard,0.0013015540810865354,HasCrCard
