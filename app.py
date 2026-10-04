@@ -13,16 +13,230 @@ st.set_page_config(page_title="Bank Customer Churn Risk Dashboard", page_icon="ð
 
 st.markdown("""
 <style>
-.stApp{background:#F4FAFF}
-[data-testid="stSidebar"]{background:#E8F4FF}
-.title{color:#145DA0;font-size:2.2rem;font-weight:800}
-.subtitle{color:#47718F;margin-bottom:1.2rem}
-.kpi{background:white;border:1px solid #CFE8FA;border-radius:15px;padding:16px;box-shadow:0 5px 18px #337dab12}
-.kpi-label{color:#64849B;font-size:.85rem;font-weight:600}
-.kpi-value{color:#145DA0;font-size:1.55rem;font-weight:800;margin-top:5px}
-.low{background:#E8F8F0;color:#19734A;padding:14px;border-radius:12px;font-weight:700;text-align:center}
-.medium{background:#FFF7DF;color:#946C00;padding:14px;border-radius:12px;font-weight:700;text-align:center}
-.high{background:#FFECEC;color:#B33A3A;padding:14px;border-radius:12px;font-weight:700;text-align:center}
+
+/* ===== MAIN APP ===== */
+.stApp {
+    background-color: #f4f9ff;
+    color: #0f2a43;
+}
+[data-testid="stHeader"] { background: transparent; }
+
+/* ===== SIDEBAR ===== */
+[data-testid="stSidebar"] {
+    background-color: #d3e8fc !important;
+}
+[data-testid="stSidebar"] * {
+    color: #0b2540 !important;
+}
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3,
+[data-testid="stSidebar"] h4 {
+    color: #0d3a66 !important;
+}
+
+/* ===== HEADINGS ===== */
+h1 { color: #0d4a80 !important; }
+h2 { color: #0d3a66 !important; }
+h3 { color: #11476f !important; }
+h4 { color: #144a70 !important; }
+
+/* ===== NORMAL TEXT ===== */
+p, span, label, li {
+    color: #0f2a43;
+}
+[data-testid="stMarkdownContainer"],
+[data-testid="stMarkdownContainer"] p,
+.stMarkdown,
+.stMarkdown p,
+.stMarkdown span {
+    color: #0f2a43 !important;
+}
+[data-testid="stMarkdownContainer"] strong {
+    color: #0d3a66 !important;
+}
+
+/* ===== CUSTOM HTML BLOCKS (title, KPI cards, risk banners) ===== */
+.title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #0d4a80 !important;
+    margin-bottom: 0.2rem;
+}
+.subtitle {
+    font-size: 1.05rem;
+    color: #2b4d69 !important;
+    margin-bottom: 1.2rem;
+}
+.kpi {
+    background: #ffffff;
+    border: 1px solid #b9d8f2;
+    border-radius: 16px;
+    padding: 18px 20px;
+    box-shadow: 0 6px 20px rgba(50, 100, 150, 0.10);
+}
+.kpi-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: #3d6482 !important;
+}
+.kpi-value {
+    font-size: 1.7rem;
+    font-weight: 800;
+    color: #0d4a80 !important;
+}
+.low, .medium, .high {
+    padding: 14px 18px;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 12px 0 8px 0;
+}
+.low    { background: #ddf5e4; color: #0b5a26 !important; border-left: 6px solid #2e9e57; }
+.medium { background: #fff1cc; color: #7a4b00 !important; border-left: 6px solid #f0a500; }
+.high   { background: #fddedd; color: #8f1a17 !important; border-left: 6px solid #e53935; }
+
+/* ===== TABS ===== */
+button[data-baseweb="tab"] {
+    font-weight: 600 !important;
+}
+button[data-baseweb="tab"] p,
+button[data-baseweb="tab"] span {
+    color: #174a7e !important;
+    font-weight: 600 !important;
+}
+button[data-baseweb="tab"][aria-selected="true"] p,
+button[data-baseweb="tab"][aria-selected="true"] span {
+    color: #c62828 !important;
+}
+
+/* ===== METRIC CARDS ===== */
+div[data-testid="stMetric"] {
+    background-color: #ffffff;
+    border: 1px solid #b9d8f2;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 6px 20px rgba(50, 100, 150, 0.10);
+}
+div[data-testid="stMetric"] label,
+div[data-testid="stMetric"] label * { color: #3d6482 !important; }
+div[data-testid="stMetricValue"],
+div[data-testid="stMetricValue"] * { color: #0d4a80 !important; }
+
+/* ===== INPUT LABELS ===== */
+.stSlider label,
+.stNumberInput label,
+.stSelectbox label,
+.stTextInput label,
+[data-testid="stWidgetLabel"] p {
+    color: #0f2a43 !important;
+    font-weight: 600 !important;
+}
+
+/* ===== SELECTBOX (white box, dark text) ===== */
+div[data-baseweb="select"] > div {
+    background-color: #ffffff !important;
+    border: 1px solid #8fb8de !important;
+}
+div[data-baseweb="select"] * {
+    color: #0b2540 !important;
+}
+div[data-baseweb="select"] svg {
+    fill: #0b2540 !important;
+}
+
+/* Dropdown menu list */
+div[data-baseweb="popover"] ul,
+div[data-baseweb="popover"] [role="listbox"] {
+    background-color: #ffffff !important;
+}
+div[data-baseweb="popover"] li,
+div[data-baseweb="popover"] [role="option"],
+div[data-baseweb="popover"] li * {
+    color: #0b2540 !important;
+    background-color: #ffffff !important;
+}
+div[data-baseweb="popover"] li:hover,
+div[data-baseweb="popover"] [role="option"]:hover,
+div[data-baseweb="popover"] [aria-selected="true"] {
+    background-color: #dcecfb !important;
+}
+
+/* ===== NUMBER INPUT (white box, dark text) ===== */
+div[data-baseweb="input"],
+div[data-baseweb="base-input"] {
+    background-color: #ffffff !important;
+    border-color: #8fb8de !important;
+}
+input, textarea {
+    color: #0b2540 !important;
+    -webkit-text-fill-color: #0b2540 !important;
+    background-color: #ffffff !important;
+}
+[data-testid="stNumberInput"] button {
+    background-color: #e3f0fd !important;
+    color: #0b2540 !important;
+}
+[data-testid="stNumberInput"] button svg {
+    fill: #0b2540 !important;
+}
+
+/* ===== SLIDER ===== */
+[data-testid="stSliderThumbValue"],
+[data-testid="stTickBarMin"],
+[data-testid="stTickBarMax"] {
+    color: #0d3a66 !important;
+    font-weight: 600 !important;
+}
+
+/* ===== BUTTON ===== */
+.stButton > button {
+    background-color: #1565c0 !important;
+    border: none !important;
+    border-radius: 10px !important;
+    font-weight: 700 !important;
+}
+.stButton > button,
+.stButton > button *,
+.stButton > button p {
+    color: #ffffff !important;
+}
+.stButton > button:hover {
+    background-color: #0d47a1 !important;
+}
+
+/* ===== DATAFRAME ===== */
+[data-testid="stDataFrame"] {
+    border-radius: 10px;
+}
+
+/* ===== EXPANDERS ===== */
+[data-testid="stExpander"] {
+    background-color: #ffffff;
+    border: 1px solid #b9d8f2;
+    border-radius: 12px;
+}
+[data-testid="stExpander"] * {
+    color: #0f2a43 !important;
+}
+
+/* ===== CAPTIONS ===== */
+.stCaption,
+[data-testid="stCaptionContainer"],
+[data-testid="stCaptionContainer"] * {
+    color: #3d6482 !important;
+}
+
+/* ===== INFO / SUCCESS / WARNING / ERROR ===== */
+[data-testid="stAlert"] * {
+    color: #0f2a43 !important;
+}
+
+/* ===== DIVIDERS ===== */
+hr { border-color: #b9d8f2 !important; }
+
 </style>
 """, unsafe_allow_html=True)
 
